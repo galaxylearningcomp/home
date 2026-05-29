@@ -11,8 +11,8 @@
 <body class="bg-gray-50">
 
     <nav class="bg-blue-900 text-white p-6 flex items-center shadow-lg">
-        <img src="logo.png" alt="Logo" class="w-24 h-24 mr-6 rounded bg-white p-2">
-        <h1 class="text-4xl font-extrabold tracking-tight">GALAXY COMPUTER LEARNING CENTER</h1>
+        <img src="logo.png" alt="Logo" class="w-20 h-20 mr-6 rounded bg-white p-1">
+        <h1 class="text-3xl font-extrabold tracking-tight">GALAXY COMPUTER LEARNING CENTER</h1>
     </nav>
 
     <nav class="bg-blue-800 text-white p-3 text-center space-x-8 font-bold text-lg shadow-md">
@@ -23,16 +23,47 @@
     </nav>
 
     <section id="courses" class="py-12 px-6">
-        <h2 class="text-4xl font-bold text-center mb-10">Our Courses</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div class="bg-white p-8 rounded-xl shadow-lg border-b-4 border-blue-600 text-center">
-                <h3 class="font-bold text-2xl">Web Development</h3>
+        <h2 class="text-4xl font-bold text-center mb-10">Our Professional Courses</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="bg-white p-6 rounded-xl shadow-lg border-b-4 border-blue-600">
+                <h3 class="font-bold text-xl text-blue-900">CCTV Technician</h3>
+                <p class="text-gray-600 mt-2">Learn installation, configuration and maintenance of surveillance systems.</p>
             </div>
-            <div class="bg-white p-8 rounded-xl shadow-lg border-b-4 border-blue-600 text-center">
-                <h3 class="font-bold text-2xl">Graphic Design</h3>
+            <div class="bg-white p-6 rounded-xl shadow-lg border-b-4 border-blue-600">
+                <h3 class="font-bold text-xl text-blue-900">BMS (Building Management System)</h3>
+                <p class="text-gray-600 mt-2">Master automated control systems for modern building operations.</p>
             </div>
-            <div class="bg-white p-8 rounded-xl shadow-lg border-b-4 border-blue-600 text-center">
-                <h3 class="font-bold text-2xl">Tally Prime</h3>
+            <div class="bg-white p-6 rounded-xl shadow-lg border-b-4 border-blue-600">
+                <h3 class="font-bold text-xl text-blue-900">CAFM (Computer Aided Facility Mgmt)</h3>
+                <p class="text-gray-600 mt-2">Efficient management of facility assets using software solutions.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg border-b-4 border-blue-600">
+                <h3 class="font-bold text-xl text-blue-900">Fire Alarm System</h3>
+                <p class="text-gray-600 mt-2">Professional training on fire detection and alarm safety protocols.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg border-b-4 border-blue-600">
+                <h3 class="font-bold text-xl text-blue-900">DCA (Diploma in Computer App)</h3>
+                <p class="text-gray-600 mt-2">Fundamental computer course covering MS Office, Typing, and Internet.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg border-b-4 border-blue-600">
+                <h3 class="font-bold text-xl text-blue-900">ADCA (Adv. Diploma in Comp App)</h3>
+                <p class="text-gray-600 mt-2">Advanced computer skills including programming and database management.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg border-b-4 border-blue-600">
+                <h3 class="font-bold text-xl text-blue-900">Document Controller</h3>
+                <p class="text-gray-600 mt-2">Professional data handling, archiving, and document management.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg border-b-4 border-blue-600">
+                <h3 class="font-bold text-xl text-blue-900">Web Development</h3>
+                <p class="text-gray-600 mt-2">Create responsive websites using HTML, CSS, JS and Frameworks.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg border-b-4 border-blue-600">
+                <h3 class="font-bold text-xl text-blue-900">Graphic Design</h3>
+                <p class="text-gray-600 mt-2">Master design tools like Photoshop, Illustrator and CorelDraw.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg border-b-4 border-blue-600">
+                <h3 class="font-bold text-xl text-blue-900">Tally Prime</h3>
+                <p class="text-gray-600 mt-2">Comprehensive accounting, GST taxation, and business management.</p>
             </div>
         </div>
     </section>
@@ -48,25 +79,30 @@
         </div>
 
         <div id="certWrapper" class="hidden mt-10 flex justify-center">
-            <div id="certificate" class="w-[850px] bg-white p-16 border-[25px] border-blue-900 shadow-2xl relative">
-                <div class="text-center">
-                    <img src="logo.png" class="w-40 h-40 mx-auto mb-6" alt="Logo">
-                    <h1 class="text-5xl font-extrabold text-blue-900 mb-2 underline tracking-wider">GALAXY COMPUTER LEARNING CENTER</h1>
-                    <p class="text-xl mt-6">This is to certify that</p>
-                    <h2 class="text-4xl font-bold my-6 uppercase text-blue-800" id="pdfName">Student Name</h2>
-                    <p class="text-xl">has successfully completed the course</p>
-                    <h3 class="text-3xl font-bold my-6" id="pdfCourse">Course Name</h3>
-                    
-                    <div class="text-left mt-10 font-bold text-lg border-t-2 border-gray-300 pt-4">
-                        <p>Certificate ID: <span id="pdfID"></span></p>
-                        <p>Date of Issue: <span id="pdfDate"></span></p>
+            <div id="certificate" class="w-[1122px] h-[794px] bg-white p-16 border-[30px] border-double border-blue-900 shadow-2xl relative overflow-hidden">
+                <div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+                    <span class="text-9xl font-black text-blue-900 rotate-[-30deg] select-none whitespace-nowrap">GCLC OFFICIAL</span>
+                </div>
+                
+                <div class="flex flex-col items-center justify-between h-full relative z-10">
+                    <div class="text-center w-full">
+                        <img src="logo.png" class="w-32 h-32 mx-auto mb-4" alt="Logo">
+                        <h1 class="text-6xl font-extrabold text-blue-900 tracking-wider">GALAXY COMPUTER LEARNING CENTER</h1>
+                        <p class="text-2xl mt-8 italic text-gray-700">This is to certify that</p>
+                        <h2 class="text-5xl font-bold my-8 uppercase text-blue-800 border-b-2 border-gray-300 inline-block px-10" id="pdfName">Student Name</h2>
+                        <p class="text-2xl">has successfully completed the course</p>
+                        <h3 class="text-4xl font-bold my-6" id="pdfCourse">Course Name</h3>
                     </div>
-
-                    <div class="flex justify-between items-end mt-16">
-                        <div id="qrcode" class="w-28 h-28"></div>
+                    
+                    <div class="w-full flex justify-between items-end">
+                        <div id="qrcode" class="w-32 h-32"></div>
+                        <div class="text-left text-lg font-semibold">
+                            <p>Certificate ID: <span id="pdfID"></span></p>
+                            <p>Date of Issue: <span id="pdfDate"></span></p>
+                        </div>
                         <div class="text-center">
-                            <img src="sign.png" class="w-40 mx-auto mb-2" alt="Signature">
-                            <p class="font-bold text-lg border-t-2 border-black pt-2">Director Signature</p>
+                            <img src="sign.png" class="w-48 h-20 mb-2 object-contain" alt="Signature">
+                            <p class="font-bold text-xl border-t-2 border-black pt-2 px-4">Director Signature</p>
                         </div>
                     </div>
                 </div>
@@ -109,10 +145,10 @@
         };
 
         document.getElementById('downloadBtn').onclick = () => {
-            html2canvas(document.getElementById('certificate')).then(canvas => {
+            html2canvas(document.getElementById('certificate'), { scale: 2 }).then(canvas => {
                 const link = document.createElement('a');
                 link.download = 'Certificate.png';
-                link.href = canvas.toDataURL();
+                link.href = canvas.toDataURL("image/png", 1.0);
                 link.click();
             });
         };
