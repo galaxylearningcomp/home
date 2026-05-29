@@ -6,39 +6,32 @@
     <title>Galaxy Computer Learning Center (GCLC)</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;500;600;700&family=Great+Vibes&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;500;600;700;800&family=Great+Vibes&display=swap');
         .font-poppins { font-family: 'Poppins', sans-serif; }
         .font-cursive { font-family: 'Great Vibes', cursive; }
-
         html { scroll-behavior: smooth; }
 
-        /* Print Settings for Certificate Only */
-        @media print {
-            body, html {
-                margin: 0;
-                padding: 0;
-                background: #ffffff;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-            nav, header, section, footer, #search-box-card, #downloadArea {
-                display: none !important;
-            }
-            #certificateContainer {
-                display: block !important;
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-            @page {
-                size: landscape;
-                margin: 0;
-            }
+        /* 📁 LOCAL GITHUB FILE PATHS (Directly on Main Repository Root) */
+        :root {
+            --logo-url: 'logo.png';
+            --sig-url: 'sign.png';
+        }
+
+        /* Dynamic Classes using CSS variables */
+        .gclc-logo {
+            background-image: url(var(--logo-url));
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .director-sig {
+            background-image: url(var(--sig-url));
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
         }
     </style>
 </head>
@@ -46,13 +39,9 @@
 
     <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-slate-100 px-6 py-3 flex justify-between items-center">
         <a href="#home" class="flex items-center space-x-3 group">
-            <div class="relative w-11 h-11 bg-gradient-to-tr from-blue-600 to-indigo-900 rounded-xl flex items-center justify-center shadow-md shadow-blue-500/20 transform group-hover:rotate-6 transition duration-300">
-                <i class="fa-solid fa-graduation-cap text-white text-xl"></i>
-                <div class="absolute -top-1 -right-1 w-3 h-3 bg-amber-400 rounded-full border-2 border-white animate-ping"></div>
-                <div class="absolute -top-1 -right-1 w-3 h-3 bg-amber-500 rounded-full border-2 border-white"></div>
-            </div>
+            <div class="w-12 h-12 gclc-logo transform group-hover:scale-105 transition duration-300"></div>
             <div>
-                <h1 class="text-xl font-black tracking-tight bg-gradient-to-r from-blue-700 to-indigo-900 bg-clip-text text-transparent leading-none">GCLC</h1>
+                <h1 class="text-2xl font-black tracking-tight bg-gradient-to-r from-blue-700 to-indigo-900 bg-clip-text text-transparent leading-none">GCLC</h1>
                 <p class="text-[10px] text-blue-600 font-bold uppercase tracking-widest mt-1">Galaxy Computer</p>
             </div>
         </a>
@@ -65,18 +54,21 @@
         </div>
     </nav>
 
-    <section id="home" class="relative bg-gradient-to-b from-blue-50/50 via-white to-slate-50 py-20 px-6 text-center">
-        <div class="max-w-3xl mx-auto">
+    <section id="home" class="relative bg-gradient-to-b from-blue-50/50 via-white to-slate-50 py-24 px-6 text-center">
+        <div class="max-w-4xl mx-auto">
             <span class="text-xs bg-blue-100 text-blue-800 font-semibold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-inner">An ISO 9001:2015 Certified Institute</span>
-            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-950 tracking-tight mt-6 leading-tight">
-                Unlock Your Digital Potential With <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Galaxy Computer</span>
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold text-slate-950 tracking-tight mt-8 mb-6 leading-tight uppercase">
+                <span class="bg-gradient-to-r from-blue-600 via-indigo-700 to-blue-900 bg-clip-text text-transparent block">GALAXY COMPUTER</span>
+                <span class="text-3xl md:text-5xl font-bold text-slate-800 block mt-2 tracking-wide font-poppins">LEARNING CENTER</span>
             </h1>
-            <p class="text-slate-600 text-base md:text-lg mt-4 max-w-xl mx-auto leading-relaxed">
+            
+            <p class="text-slate-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
                 Empowering students with foundational to advanced technical education. Verify and download your official academic credentials effortlessly.
             </p>
-            <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="#verify" class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold px-6 py-3 rounded-xl shadow-lg shadow-blue-500/20 hover:opacity-95 transition text-center"><i class="fa-solid fa-magnifying-glass mr-2"></i>Verify Your Certificate</a>
-                <a href="#courses" class="w-full sm:w-auto bg-white border border-slate-200 text-slate-700 font-semibold px-6 py-3 rounded-xl hover:bg-slate-50 transition text-center">Explore Courses</a>
+            <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#verify" class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-blue-500/20 hover:opacity-95 transition text-center"><i class="fa-solid fa-magnifying-glass mr-2"></i>Verify Your Certificate</a>
+                <a href="#courses" class="w-full sm:w-auto bg-white border border-slate-200 text-slate-700 font-semibold px-8 py-3.5 rounded-xl hover:bg-slate-50 transition text-center">Explore Courses</a>
             </div>
         </div>
     </section>
@@ -84,69 +76,48 @@
     <section id="courses" class="py-20 px-6 max-w-6xl mx-auto w-full">
         <div class="text-center mb-12">
             <h2 class="text-3xl font-bold text-slate-900">Our Core Programs</h2>
-            <p class="text-slate-500 mt-2 text-sm">Industry-relevant basic and advanced curriculum designed for professional growth.</p>
         </div>
-
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white border border-slate-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 text-xl mb-4"><i class="fa-solid fa-desktop"></i></div>
+            <div class="bg-white border border-slate-100 p-6 rounded-2xl shadow-sm">
                 <h3 class="text-lg font-bold text-slate-800">CCA (Certificate in Computer Application)</h3>
-                <p class="text-slate-500 text-xs mt-2 leading-relaxed">Covers essential basic concepts including Computer Fundamentals, Windows OS, MS Office suite, and introductory Internet browsing protocols.</p>
-                <span class="inline-block text-[11px] font-semibold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-md mt-4">Duration: 3 Months</span>
+                <p class="text-slate-500 text-xs mt-2">Covers Computer Fundamentals, Windows OS, MS Office suite, and Internet protocols.</p>
+                <span class="inline-block text-[11px] font-semibold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-md mt-4">3 Months</span>
             </div>
-            <div class="bg-white border border-slate-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 text-xl mb-4"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+            <div class="bg-white border border-slate-100 p-6 rounded-2xl shadow-sm">
                 <h3 class="text-lg font-bold text-slate-800">DCA (Diploma in Computer Application)</h3>
-                <p class="text-slate-500 text-xs mt-2 leading-relaxed">Comprehensive learning model adding Multi-media workflows, Advanced Data Sheets, Operating System Architecture, and Basic Corporate IT infrastructure management.</p>
-                <span class="inline-block text-[11px] font-semibold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-md mt-4">Duration: 6 Months</span>
+                <p class="text-slate-500 text-xs mt-2">Comprehensive learning including Multimedia workflows, Advanced Data Sheets, and Operating Systems.</p>
+                <span class="inline-block text-[11px] font-semibold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-md mt-4">6 Months</span>
             </div>
-            <div class="bg-white border border-slate-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 text-xl mb-4"><i class="fa-solid fa-calculator"></i></div>
+            <div class="bg-white border border-slate-100 p-6 rounded-2xl shadow-sm">
                 <h3 class="text-lg font-bold text-slate-800">Tally Prime & Financial Accounting</h3>
-                <p class="text-slate-500 text-xs mt-2 leading-relaxed">Deep dive into digital bookkeeping system including inventory control mechanisms, structured GST integration, billing ledgers, and institutional cash-flow sheets.</p>
-                <span class="inline-block text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md mt-4">Duration: 3 Months</span>
-            </div>
-            <div class="bg-white border border-slate-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600 text-xl mb-4"><i class="fa-solid fa-palette"></i></div>
-                <h3 class="text-lg font-bold text-slate-800">DTP (Desktop Publishing)</h3>
-                <p class="text-slate-500 text-xs mt-2 leading-relaxed">Professional structural designing using modern dynamic graphic layouts, digital vector modules via CorelDraw, Photo Manipulation in Photoshop, and Page Layout architectures.</p>
-                <span class="inline-block text-[11px] font-semibold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-md mt-4">Duration: 4 Months</span>
-            </div>
-            <div class="bg-white border border-slate-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600 text-xl mb-4"><i class="fa-solid fa-network-wired"></i></div>
-                <h3 class="text-lg font-bold text-slate-800">ADCA (Advance Diploma in Computer Application)</h3>
-                <p class="text-slate-500 text-xs mt-2 leading-relaxed">Flagship master curriculum packing foundational office suites, professional layout tools (DTP), integrated financial books (Tally), and structural database paradigms.</p>
-                <span class="inline-block text-[11px] font-semibold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-md mt-4">Duration: 12 Months</span>
-            </div>
-            <div class="bg-white border border-slate-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 bg-rose-50 rounded-xl flex items-center justify-center text-rose-600 text-xl mb-4"><i class="fa-solid fa-code"></i></div>
-                <h3 class="text-lg font-bold text-slate-800">Web Design Fundamentals</h3>
-                <p class="text-slate-500 text-xs mt-2 leading-relaxed">Introduction to front-end development systems using HTML5 semantic elements, custom CSS3 responsive layouts, structural styling paradigms, and visual interface deployments.</p>
-                <span class="inline-block text-[11px] font-semibold text-rose-700 bg-rose-50 px-2.5 py-1 rounded-md mt-4">Duration: 3 Months</span>
+                <p class="text-slate-500 text-xs mt-2">Digital bookkeeping including inventory control mechanisms, GST integration, and billing ledgers.</p>
+                <span class="inline-block text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md mt-4">3 Months</span>
             </div>
         </div>
     </section>
 
     <section id="verify" class="py-16 px-4 bg-slate-100 flex flex-col items-center justify-center w-full border-t border-b border-slate-200">
         <div id="search-box-card" class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 border border-slate-200 text-center">
-            <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 text-lg shadow-sm">
+            <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 text-lg">
                 <i class="fa-solid fa-signature"></i>
             </div>
             <h2 class="text-2xl font-bold text-slate-900 mb-2">Verification Portal</h2>
-            <p class="text-sm text-slate-500 mb-6">Validate registration records. Enter the exact document sequence assigned by administration.</p>
+            <p class="text-sm text-slate-500 mb-6">Enter your Certificate Number below to check and download.</p>
             
             <div class="space-y-4">
                 <input type="text" id="certNumber" placeholder="e.g. GCLC-2026-0001" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-center uppercase font-semibold tracking-wider text-slate-700">
-                <button id="searchBtn" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-blue-500/20 hover:from-blue-700 hover:to-indigo-700 transition duration-200">Search System</button>
+                <button id="searchBtn" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-4 rounded-xl shadow-lg transition duration-200">Search System</button>
             </div>
 
             <div id="loading" class="hidden mt-6 text-blue-600 font-medium animate-bounce"><i class="fa-solid fa-spinner animate-spin mr-2"></i>Searching database...</div>
             <div id="errorMsg" class="hidden mt-6 p-4 bg-red-50 text-red-600 rounded-xl border border-red-100 text-sm"></div>
             
-            <div id="downloadArea" class="hidden mt-6 p-4 bg-green-50 border border-green-200 rounded-xl text-center animate-fade-in">
-                <p class="text-green-700 font-semibold text-sm mb-1"><i class="fa-solid fa-circle-check mr-1.5"></i>Record Found Successfully!</p>
+            <div id="downloadArea" class="hidden mt-6 p-4 bg-green-50 border border-green-200 rounded-xl text-center">
+                <p class="text-green-700 font-semibold text-sm mb-1">🎉 Record Found Successfully!</p>
                 <p id="studentFoundName" class="text-slate-700 text-xs font-semibold mb-3"></p>
-                <button id="printPdfBtn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2"><i class="fa-solid fa-file-pdf"></i>Save as PDF / Print</button>
+                <button id="downloadImageBtn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-download"></i><span>Download Certificate File</span>
+                </button>
             </div>
         </div>
 
@@ -157,34 +128,37 @@
                 <div class="absolute bottom-4 left-4 w-12 h-12 border-b-4 border-l-4 border-amber-500"></div>
                 <div class="absolute bottom-4 right-4 w-12 h-12 border-b-4 border-r-4 border-amber-500"></div>
 
-                <div class="flex flex-col justify-between h-full py-4">
-                    <div>
-                        <h3 class="text-amber-500 font-bold tracking-widest text-sm uppercase">Certificate of Excellence</h3>
-                        <h1 class="text-3xl font-bold text-slate-800 mt-2 tracking-wide">GALAXY COMPUTER LEARNING CENTER</h1>
-                        <p class="text-xs text-slate-500 tracking-wider mt-1">An ISO 9001:2015 Certified Institute</p>
+                <div class="flex flex-col justify-between h-full py-2">
+                    
+                    <div class="flex flex-col items-center justify-center mt-2">
+                        <div class="w-16 h-16 gclc-logo mb-2"></div>
+                        <h3 class="text-amber-500 font-bold tracking-widest text-xs uppercase">Certificate of Excellence</h3>
+                        <h1 class="text-3xl font-extrabold text-slate-900 mt-1 tracking-wide uppercase">GALAXY COMPUTER LEARNING CENTER</h1>
+                        <p class="text-[11px] text-slate-500 tracking-wider font-semibold">An ISO 9001:2015 Certified Institute</p>
                     </div>
 
-                    <div class="my-4">
-                        <p class="text-slate-600 italic text-lg">This is proudly presented to</p>
-                        <h2 id="pdfName" class="text-4xl font-bold text-indigo-900 font-cursive my-2">Student Name</h2>
-                        <p class="text-slate-600 max-w-xl mx-auto text-sm leading-relaxed">
+                    <div class="my-2">
+                        <p class="text-slate-600 italic text-base">This is proudly presented to</p>
+                        <h2 id="pdfName" class="text-4xl font-bold text-indigo-950 font-cursive my-1">Student Name</h2>
+                        <p class="text-slate-600 max-w-xl mx-auto text-xs leading-relaxed mt-2">
                             for successfully completing the professional course in <strong id="pdfCourse" class="text-slate-800">Course Name</strong> with outstanding performance and dedication.
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-3 items-end text-center px-12">
-                        <div class="text-left text-xs text-slate-500">
+                    <div class="grid grid-cols-3 items-end text-center px-12 mb-2">
+                        <div class="text-left text-[11px] text-slate-500 leading-normal">
                             <p>Issue Date: <span id="pdfDate" class="font-semibold text-slate-700">00/00/0000</span></p>
-                            <p class="mt-1">Cert No: <span id="pdfCertId" class="font-semibold text-slate-700">XXXX</span></p>
+                            <p class="mt-0.5">Cert No: <span id="pdfCertId" class="font-semibold text-slate-700">XXXX</span></p>
                         </div>
                         <div class="flex justify-center">
                             <div class="w-16 h-16 bg-amber-400 rounded-full flex items-center justify-center border-4 border-amber-200 shadow-sm">
-                                <span class="text-[10px] font-bold text-amber-900 text-center leading-none">OFFICIAL<br>SEAL</span>
+                                <span class="text-[9px] font-bold text-amber-900 text-center leading-none">OFFICIAL<br>SEAL</span>
                             </div>
                         </div>
-                        <div class="text-right">
-                            <div class="font-cursive text-xl text-slate-700 border-b border-slate-300 pb-1">Director</div>
-                            <p class="text-[10px] text-slate-400 uppercase tracking-wider mt-1">Authorized Signatory</p>
+                        <div class="text-right flex flex-col items-center justify-end">
+                            <div class="w-24 h-10 director-sig mb-1"></div>
+                            <div class="font-semibold text-sm text-slate-800 border-t border-slate-300 pt-1 w-32 text-center">Director</div>
+                            <p class="text-[9px] text-slate-400 uppercase tracking-wider mt-0.5">Authorized Signatory</p>
                         </div>
                     </div>
                 </div>
@@ -196,22 +170,13 @@
         <div class="space-y-6">
             <div>
                 <h2 class="text-3xl font-bold text-slate-900">Get In Touch</h2>
-                <p class="text-slate-500 mt-2 text-sm">Have any queries regarding verification, enrollment, or basic operations? Reach out directly.</p>
+                <p class="text-slate-500 mt-2 text-sm">Have any queries regarding verification, enrollment, or basic operations? Fill out the form to reach out directly.</p>
             </div>
-            
             <div class="flex items-start space-x-4">
-                <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center text-lg shrink-0 mt-1"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center text-lg mt-1"><i class="fa-solid fa-location-dot"></i></div>
                 <div>
                     <h4 class="font-bold text-slate-800 text-sm">Campus Address</h4>
-                    <p class="text-slate-500 text-xs mt-1 leading-relaxed">Naka 5, Darbhanga,<br>Bihar - 846004, India</p>
-                </div>
-            </div>
-
-            <div class="flex items-start space-x-4">
-                <div class="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center text-lg shrink-0 mt-1"><i class="fa-solid fa-envelope"></i></div>
-                <div>
-                    <h4 class="font-bold text-slate-800 text-sm">Email Communication</h4>
-                    <p class="text-slate-500 text-xs mt-1">info@gclcdarbhanga.org</p>
+                    <p class="text-slate-500 text-xs mt-1">Naka 5, Darbhanga, Bihar - 846004, India</p>
                 </div>
             </div>
         </div>
@@ -256,6 +221,7 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        let currentStudentName = "Certificate";
 
         document.getElementById('searchBtn').addEventListener('click', async () => {
             const certId = document.getElementById('certNumber').value.trim().toUpperCase();
@@ -282,34 +248,56 @@
 
                 if (docSnap.exists()) {
                     const data = docSnap.data();
-                    let studentName = data.name || "Student";
+                    currentStudentName = data.name || "Student";
                     
-                    // Populate HTML elements inside preview frame
                     document.getElementById('pdfName').innerText = data.name || "N/A";
                     document.getElementById('pdfCourse').innerText = data.course || "N/A";
                     document.getElementById('pdfDate').innerText = data.date || "N/A";
                     document.getElementById('pdfCertId').innerText = certId;
 
-                    // Set state visualization triggers active
-                    document.getElementById('studentFoundName').innerText = "Student Account: " + studentName;
+                    document.getElementById('studentFoundName').innerText = "Student Account: " + currentStudentName;
                     downloadArea.classList.remove('hidden');
                     certContainer.classList.remove('hidden');
 
                 } else {
-                    errorMsg.innerText = "No official record match inside system database. Check sequence structure (e.g. GCLC-2026-0001).";
+                    errorMsg.innerText = "No record match found.";
                     errorMsg.classList.remove('hidden');
                 }
             } catch (error) {
                 loading.classList.add('hidden');
-                errorMsg.innerText = "Critical Handshake Error with cloud database cluster.";
+                errorMsg.innerText = "Error connecting to server.";
                 errorMsg.classList.remove('hidden');
-                console.error(error);
             }
         });
 
-        // Native Driver Window Component Printer Trigger
-        document.getElementById('printPdfBtn').addEventListener('click', () => {
-            window.print();
+        // Downloader Engine using Canvas with local images support
+        document.getElementById('downloadImageBtn').addEventListener('click', () => {
+            const element = document.getElementById('certificateTemplate');
+            const btn = document.getElementById('downloadImageBtn');
+            const btnText = btn.querySelector('span');
+            
+            btnText.innerText = "Generating File...";
+            btn.disabled = true;
+
+            html2canvas(element, {
+                scale: 2.5,
+                useCORS: true,
+                backgroundColor: "#ffffff"
+            }).then(canvas => {
+                const image = canvas.toDataURL("image/png");
+                const link = document.createElement('a');
+                link.download = `GCLC_Certificate_${currentStudentName.replace(/\s+/g, '_')}.png`;
+                link.href = image;
+                link.click();
+
+                btnText.innerText = "Download Certificate File";
+                btn.disabled = false;
+            }).catch(err => {
+                btnText.innerText = "Download Certificate File";
+                btn.disabled = false;
+                alert("Error rendering file buffer wrapper.");
+                console.error(err);
+            });
         });
     </script>
 </body>
