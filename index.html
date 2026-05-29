@@ -16,7 +16,6 @@
     </nav>
 
     <nav class="bg-blue-800 text-white p-3 text-center space-x-8 font-bold text-lg shadow-md sticky top-0 z-50">
-        <a href="#home" class="hover:text-blue-200">Home</a>
         <a href="#courses" class="hover:text-blue-200">Courses</a>
         <a href="#verify" class="hover:text-blue-200">Verify</a>
         <a href="#contact" class="hover:text-blue-200">Contact Us</a>
@@ -83,11 +82,11 @@
 
     <section id="contact" class="py-12 px-6 bg-gray-100">
         <h2 class="text-4xl font-bold text-center mb-8">Contact Us</h2>
-        <form class="max-w-lg mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-200">
-            <input type="text" placeholder="Name" class="w-full p-3 border rounded mb-4">
-            <input type="email" placeholder="Email" class="w-full p-3 border rounded mb-4">
-            <textarea placeholder="Message" class="w-full p-3 border rounded mb-4 h-32"></textarea>
-            <button class="w-full bg-blue-900 text-white py-3 rounded-lg font-bold text-lg hover:bg-blue-800">Send Message</button>
+        <form action="https://formspree.io/f/xojbryja" method="POST" class="max-w-lg mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+            <input type="text" name="name" placeholder="Name" class="w-full p-3 border rounded mb-4" required>
+            <input type="email" name="email" placeholder="Email" class="w-full p-3 border rounded mb-4" required>
+            <textarea name="message" placeholder="Message" class="w-full p-3 border rounded mb-4 h-32" required></textarea>
+            <button type="submit" class="w-full bg-blue-900 text-white py-3 rounded-lg font-bold text-lg hover:bg-blue-800">Send Message</button>
         </form>
     </section>
 
