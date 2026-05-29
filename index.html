@@ -93,7 +93,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyD74cf-EyzOowdrKncNYAN29wnTVrGu5Vo",
@@ -122,25 +122,23 @@
             errorMsg.classList.add('hidden');
 
             try {
-                const certificatesRef = collection(db, "certificates");
-                
-                // Primary search query matching the 'id' field
-                const q = query(certificatesRef, where("id", "==", certId));
-                const querySnapshot = await getDocs(q);
+                // Fixed back to point directly to Document ID as shown in your database screenshot
+                const docRef = doc(db, "certificates", certId);
+                const docSnap = await getDoc(docRef);
 
-                if (!querySnapshot.empty) {
-                    const docSnap = querySnapshot.docs[0];
+                if (docSnap.exists()) {
                     const data = docSnap.data();
                     
-                    document.getElementById('pdfName').innerText = data.name;
-                    document.getElementById('pdfCourse').innerText = data.course;
-                    document.getElementById('pdfDate').innerText = data.date;
+                    // Populate data into template fields
+                    document.getElementById('pdfName').innerText = data.name || "N/A";
+                    document.getElementById('pdfCourse').innerText = data.course || "N/A";
+                    document.getElementById('pdfDate').innerText = data.date || "N/A";
                     document.getElementById('pdfCertId').innerText = certId;
 
                     const element = document.getElementById('certificateTemplate');
                     const opt = {
                         margin: 0,
-                        filename: `Certificate_${data.name.replace(/\s+/g, '_')}.pdf`,
+                        filename: `Certificate_${(data.name || 'Student').replace(/\s+/g, '_')}.pdf`,
                         image: { type: 'jpeg', quality: 0.98 },
                         html2canvas: { scale: 2, useCORS: true },
                         jsPDF: { unit: 'px', format: [900, 630], orientation: 'landscape' }
@@ -152,37 +150,9 @@
                     });
 
                 } else {
-                    // Backup search query matching the 'certificateNumber' field if 'id' field query yields no results
-                    const qBackup = query(certificatesRef, where("certificateNumber", "==", certId));
-                    const backupSnapshot = await getDocs(qBackup);
-
-                    if(!backupSnapshot.empty) {
-                        const docSnap = backupSnapshot.docs[0];
-                        const data = docSnap.data();
-                        
-                        document.getElementById('pdfName').innerText = data.name;
-                        document.getElementById('pdfCourse').innerText = data.course;
-                        document.getElementById('pdfDate').innerText = data.date;
-                        document.getElementById('pdfCertId').innerText = certId;
-
-                        const element = document.getElementById('certificateTemplate');
-                        const opt = {
-                            margin: 0,
-                            filename: `Certificate_${data.name.replace(/\s+/g, '_')}.pdf`,
-                            image: { type: 'jpeg', quality: 0.98 },
-                            html2canvas: { scale: 2, useCORS: true },
-                            jsPDF: { unit: 'px', format: [900, 630], orientation: 'landscape' }
-                        };
-
-                        html2pdf().set(opt).from(element).save().then(() => {
-                            loading.classList.add('hidden');
-                            alert('Your certificate has been downloaded successfully!');
-                        });
-                    } else {
-                        loading.classList.add('hidden');
-                        errorMsg.innerText = "Record not found! Please check the certificate number or contact the admin.";
-                        errorMsg.classList.remove('hidden');
-                    }
+                    loading.classList.add('hidden');
+                    errorMsg.innerText = "Record not found! Please check the certificate number format exactly (e.g., GCLC-2026-0001).";
+                    errorMsg.classList.remove('hidden');
                 }
             } catch (error) {
                 loading.classList.add('hidden');
