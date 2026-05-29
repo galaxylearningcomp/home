@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;600;700&family=Great+Vibes&display=swap');
         .font-poppins { font-family: 'Poppins', sans-serif; }
         .font-cursive { font-family: 'Great Vibes', cursive; }
     </style>
@@ -27,20 +27,20 @@
                 <p class="text-[10px] text-blue-600 font-semibold uppercase tracking-widest">Computer Learning Center</p>
             </div>
         </div>
-        <span class="text-xs bg-green-100 text-green-700 font-medium px-2.5 py-1 rounded-full border border-green-200">सत्यापित पोर्टल</span>
+        <span class="text-xs bg-green-100 text-green-700 font-medium px-2.5 py-1 rounded-full border border-green-200">Verified Portal</span>
     </header>
 
     <main class="flex-grow flex flex-col items-center justify-center px-4 py-12">
         <div class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 border border-slate-100 text-center">
-            <h2 class="text-2xl font-bold text-slate-800 mb-2">अपना सर्टिफिकेट डाउनलोड करें</h2>
-            <p class="text-sm text-slate-500 mb-6">संस्थान द्वारा दिए गए सर्टिफिकेट या रोल नंबर को नीचे दर्ज करें।</p>
+            <h2 class="text-2xl font-bold text-slate-800 mb-2">Download Your Certificate</h2>
+            <p class="text-sm text-slate-500 mb-6">Enter the certificate number or roll number provided by the institute below.</p>
             
             <div class="space-y-4">
-                <input type="text" id="certNumber" placeholder="उदा. GCLC-2026-001" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-center uppercase font-semibold tracking-wider text-slate-700">
-                <button id="searchBtn" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-blue-500/20 hover:from-blue-700 hover:to-indigo-700 transition duration-200">सर्टिफिकेट खोजें</button>
+                <input type="text" id="certNumber" placeholder="e.g. GCLC-2026-001" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-center uppercase font-semibold tracking-wider text-slate-700">
+                <button id="searchBtn" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-blue-500/20 hover:from-blue-700 hover:to-indigo-700 transition duration-200">Search Certificate</button>
             </div>
 
-            <div id="loading" class="hidden mt-6 text-blue-600 font-medium animate-bounce">खोज की जा रही है...</div>
+            <div id="loading" class="hidden mt-6 text-blue-600 font-medium animate-bounce">Searching...</div>
             
             <div id="errorMsg" class="hidden mt-6 p-4 bg-red-50 text-red-600 rounded-xl border border-red-100 text-sm"></div>
         </div>
@@ -93,9 +93,8 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
-        // Your Firebase Config Automatically Injected
         const firebaseConfig = {
             apiKey: "AIzaSyD74cf-EyzOowdrKncNYAN29wnTVrGu5Vo",
             authDomain: "rabia-technical-institute.firebaseapp.com",
@@ -109,14 +108,13 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Search and Auto-Generate PDF Functionality
         document.getElementById('searchBtn').addEventListener('click', async () => {
             const certId = document.getElementById('certNumber').value.trim().toUpperCase();
             const loading = document.getElementById('loading');
             const errorMsg = document.getElementById('errorMsg');
             
             if(!certId) {
-                alert('कृपया सर्टिफिकेट नंबर दर्ज करें!');
+                alert('Please enter a certificate number!');
                 return;
             }
 
@@ -124,20 +122,21 @@
             errorMsg.classList.add('hidden');
 
             try {
-                // Fetch student details from Firebase Firestore
-                const docRef = doc(db, "certificates", certId);
-                const docSnap = await getDoc(docRef);
+                const certificatesRef = collection(db, "certificates");
+                
+                // Primary search query matching the 'id' field
+                const q = query(certificatesRef, where("id", "==", certId));
+                const querySnapshot = await getDocs(q);
 
-                if (docSnap.exists()) {
+                if (!querySnapshot.empty) {
+                    const docSnap = querySnapshot.docs[0];
                     const data = docSnap.data();
                     
-                    // Fill data into HTML Certificate Template
                     document.getElementById('pdfName').innerText = data.name;
                     document.getElementById('pdfCourse').innerText = data.course;
                     document.getElementById('pdfDate').innerText = data.date;
                     document.getElementById('pdfCertId').innerText = certId;
 
-                    // Trigger html2pdf to create and download the PDF automatically
                     const element = document.getElementById('certificateTemplate');
                     const opt = {
                         margin: 0,
@@ -149,17 +148,45 @@
 
                     html2pdf().set(opt).from(element).save().then(() => {
                         loading.classList.add('hidden');
-                        alert('आपका सर्टिफिकेट सफलतापूर्वक डाउनलोड हो गया है!');
+                        alert('Your certificate has been downloaded successfully!');
                     });
 
                 } else {
-                    loading.classList.add('hidden');
-                    errorMsg.innerText = "रिकॉर्ड नहीं मिला! कृपया सही सर्टिफिकेट नंबर दर्ज करें या एडमिन से संपर्क करें।";
-                    errorMsg.classList.remove('hidden');
+                    // Backup search query matching the 'certificateNumber' field if 'id' field query yields no results
+                    const qBackup = query(certificatesRef, where("certificateNumber", "==", certId));
+                    const backupSnapshot = await getDocs(qBackup);
+
+                    if(!backupSnapshot.empty) {
+                        const docSnap = backupSnapshot.docs[0];
+                        const data = docSnap.data();
+                        
+                        document.getElementById('pdfName').innerText = data.name;
+                        document.getElementById('pdfCourse').innerText = data.course;
+                        document.getElementById('pdfDate').innerText = data.date;
+                        document.getElementById('pdfCertId').innerText = certId;
+
+                        const element = document.getElementById('certificateTemplate');
+                        const opt = {
+                            margin: 0,
+                            filename: `Certificate_${data.name.replace(/\s+/g, '_')}.pdf`,
+                            image: { type: 'jpeg', quality: 0.98 },
+                            html2canvas: { scale: 2, useCORS: true },
+                            jsPDF: { unit: 'px', format: [900, 630], orientation: 'landscape' }
+                        };
+
+                        html2pdf().set(opt).from(element).save().then(() => {
+                            loading.classList.add('hidden');
+                            alert('Your certificate has been downloaded successfully!');
+                        });
+                    } else {
+                        loading.classList.add('hidden');
+                        errorMsg.innerText = "Record not found! Please check the certificate number or contact the admin.";
+                        errorMsg.classList.remove('hidden');
+                    }
                 }
             } catch (error) {
                 loading.classList.add('hidden');
-                errorMsg.innerText = "सर्वर से कनेक्ट करने में समस्या आई। बाद में प्रयास करें।";
+                errorMsg.innerText = "Failed to connect to the server. Please try again later.";
                 errorMsg.classList.remove('hidden');
                 console.error(error);
             }
