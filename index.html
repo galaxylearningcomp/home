@@ -3,81 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galaxy Computer Learning Center (GCLC)</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Galaxy Computer Learning Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;500;600;700;800&family=Great+Vibes&display=swap');
-        .font-poppins { font-family: 'Poppins', sans-serif; }
         .font-cursive { font-family: 'Great Vibes', cursive; }
-        html { scroll-behavior: smooth; }
     </style>
 </head>
-<body class="bg-slate-50 font-poppins min-h-screen flex flex-col justify-between text-slate-800">
+<body class="bg-gray-50 font-sans">
 
-    <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-slate-100 px-6 py-3 flex justify-between items-center">
-        <a href="#home" class="flex items-center space-x-3 group">
-            <img src="logo.png?v=3" alt="Logo" class="w-16 h-16 object-contain transform group-hover:scale-105 transition duration-300">
-            <div>
-                <h1 class="text-2xl font-black tracking-tight bg-gradient-to-r from-blue-700 to-indigo-900 bg-clip-text text-transparent leading-none">GCLC</h1>
-                <p class="text-[10px] text-blue-600 font-bold uppercase tracking-widest mt-1">Galaxy Computer</p>
-            </div>
-        </a>
-        <div class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-600">
-            <a href="#home" class="hover:text-blue-600 transition">Home</a>
-            <a href="#courses" class="hover:text-blue-600 transition">Courses</a>
-            <a href="#verify" class="hover:text-blue-600 transition bg-blue-50 text-blue-700 px-3 py-1.5 rounded-lg font-semibold">Verify Certificate</a>
-            <a href="#contact" class="hover:text-blue-600 transition">Contact Us</a>
+    <nav class="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-50">
+        <div class="flex items-center gap-2">
+            <img src="logo.png" alt="Logo" class="w-12 h-12">
+            <span class="font-bold text-xl text-blue-900">GCLC</span>
+        </div>
+        <div class="space-x-6 text-sm font-semibold text-gray-700">
+            <a href="#home">Home</a>
+            <a href="#courses">Courses</a>
+            <a href="#verify">Verify</a>
+            <a href="#contact">Contact</a>
         </div>
     </nav>
 
-    <section id="home" class="relative bg-gradient-to-b from-blue-50/50 via-white to-slate-50 py-24 px-6 text-center">
-        <div class="max-w-4xl mx-auto">
-            <span class="text-xs bg-blue-100 text-blue-800 font-semibold px-3 py-1.5 rounded-full uppercase tracking-wider">An ISO 9001:2015 Certified Institute</span>
-            <h1 class="text-5xl md:text-7xl font-extrabold text-slate-950 mt-8 mb-6 uppercase">
-                <span class="bg-gradient-to-r from-blue-600 to-indigo-900 bg-clip-text text-transparent block">GALAXY COMPUTER</span>
-                <span class="text-3xl md:text-5xl font-bold text-slate-800 block mt-2">LEARNING CENTER</span>
-            </h1>
-            <a href="#verify" class="bg-blue-600 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg hover:bg-blue-700 transition">Verify Your Certificate</a>
+    <section id="home" class="py-20 text-center">
+        <h1 class="text-4xl font-bold text-gray-900">Welcome to Galaxy Computer Learning Center</h1>
+    </section>
+
+    <section id="courses" class="py-20 bg-white text-center">
+        <h2 class="text-3xl font-bold">Our Courses</h2>
+    </section>
+
+    <section id="verify" class="py-20 bg-gray-100 px-4">
+        <div class="max-w-md mx-auto bg-white p-8 rounded-xl shadow-lg text-center">
+            <h2 class="text-2xl font-bold mb-4">Certificate Verification</h2>
+            <input type="text" id="certNumber" placeholder="Enter Certificate No" class="w-full p-3 border rounded-lg mb-4">
+            <button id="searchBtn" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700">Search</button>
+            
+            <div id="downloadArea" class="hidden mt-6">
+                <button id="downloadImageBtn" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700">Download Certificate</button>
+            </div>
+        </div>
+
+        <div id="certificateContainer" class="hidden mt-10 flex justify-center">
+            <div id="certificateTemplate" class="w-[900px] h-[630px] p-8 bg-white border-[16px] border-double border-gray-800 text-center shadow-2xl relative">
+                <img src="logo.png" class="w-28 h-28 mx-auto mb-4" id="certLogo">
+                <h1 class="text-3xl font-bold uppercase">GALAXY COMPUTER LEARNING CENTER</h1>
+                <h2 id="pdfName" class="text-5xl font-cursive mt-10">Student Name</h2>
+                <p class="mt-4">Course: <span id="pdfCourse" class="font-bold"></span></p>
+                
+                <div class="absolute bottom-10 left-10 text-left">
+                    <p>Date: <span id="pdfDate"></span></p>
+                    <p>ID: <span id="pdfCertId"></span></p>
+                </div>
+                
+                <div class="absolute bottom-10 right-10 text-center">
+                    <img src="sign.png" class="w-48 h-24 mx-auto" id="certSig">
+                    <div class="border-t-2 border-gray-800 w-40 mt-2 font-bold">Director</div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="verify" class="py-16 px-4 bg-slate-100 flex flex-col items-center justify-center w-full">
-        <div class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 border border-slate-200 text-center">
-            <h2 class="text-2xl font-bold mb-6">Verification Portal</h2>
-            <input type="text" id="certNumber" placeholder="Enter Certificate No" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-center mb-4">
-            <button id="searchBtn" class="w-full bg-blue-600 text-white font-semibold py-3 rounded-xl">Search</button>
-            <div id="loading" class="hidden mt-4 text-blue-600 animate-pulse">Searching...</div>
-            <div id="errorMsg" class="hidden mt-4 text-red-600"></div>
-            <div id="downloadArea" class="hidden mt-6">
-                <button id="downloadImageBtn" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl">Download Certificate</button>
-            </div>
-        </div>
-
-        <div id="certificateContainer" class="hidden my-12 overflow-x-auto max-w-full p-4 bg-slate-200/50 rounded-2xl">
-            <div id="certificateTemplate" class="w-[900px] h-[630px] p-8 bg-white relative border-[16px] border-double border-slate-800 text-center shadow-2xl" style="background-color: #ffffff;">
-                <div class="flex flex-col items-center mt-2">
-                    <img src="logo.png?v=3" alt="Logo" class="w-28 h-28 object-contain mb-2">
-                    <h1 class="text-3xl font-extrabold text-slate-900 uppercase tracking-wide">GALAXY COMPUTER LEARNING CENTER</h1>
-                </div>
-                <div class="my-6">
-                    <h2 id="pdfName" class="text-4xl font-bold text-indigo-950 font-cursive">Student Name</h2>
-                    <p class="mt-4 text-slate-600">Course: <strong id="pdfCourse">N/A</strong></p>
-                </div>
-                <div class="grid grid-cols-2 px-12 mt-16 items-center">
-                    <div class="text-left text-sm font-semibold">
-                        <p>Date: <span id="pdfDate">N/A</span></p>
-                        <p>Cert No: <span id="pdfCertId">N/A</span></p>
-                    </div>
-                    <div class="text-right flex flex-col items-center">
-                        <img src="sign.png?v=3" alt="Signature" class="w-48 h-24 object-contain mb-1">
-                        <div class="font-bold border-t border-slate-800 w-40">Director</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section id="contact" class="py-20 text-center">
+        <h2 class="text-3xl font-bold">Contact Us</h2>
     </section>
 
     <script type="module">
@@ -85,8 +74,8 @@
         import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
         const db = getFirestore(initializeApp({ apiKey: "AIzaSyD74cf-EyzOowdrKncNYAN29wnTVrGu5Vo", projectId: "rabia-technical-institute" }));
-        
-        document.getElementById('searchBtn').addEventListener('click', async () => {
+
+        document.getElementById('searchBtn').onclick = async () => {
             const id = document.getElementById('certNumber').value.trim().toUpperCase();
             const snap = await getDoc(doc(db, "certificates", id));
             if (snap.exists()) {
@@ -97,17 +86,18 @@
                 document.getElementById('pdfCertId').innerText = id;
                 document.getElementById('certificateContainer').classList.remove('hidden');
                 document.getElementById('downloadArea').classList.remove('hidden');
-            } else { alert("Not found"); }
-        });
+            } else { alert("Certificate not found!"); }
+        };
 
-        document.getElementById('downloadImageBtn').addEventListener('click', () => {
-            html2canvas(document.getElementById('certificateTemplate'), { scale: 2, useCORS: true }).then(canvas => {
+        document.getElementById('downloadImageBtn').onclick = () => {
+            const element = document.getElementById('certificateTemplate');
+            html2canvas(element, { scale: 2, useCORS: true, allowTaint: true }).then(canvas => {
                 const link = document.createElement('a');
                 link.download = 'Certificate.png';
                 link.href = canvas.toDataURL("image/png");
                 link.click();
             });
-        });
+        };
     </script>
 </body>
 </html>
