@@ -10,42 +10,63 @@
 </head>
 <body class="bg-gray-50">
 
-    <nav class="bg-blue-900 text-white p-4 flex items-center shadow-md">
-        <img src="logo.png" alt="Logo" class="w-12 h-12 mr-4 rounded bg-white p-1">
-        <h1 class="text-2xl font-bold">GALAXY COMPUTER LEARNING CENTER</h1>
+    <nav class="bg-blue-900 text-white p-6 flex items-center shadow-lg">
+        <img src="logo.png" alt="Logo" class="w-24 h-24 mr-6 rounded bg-white p-2">
+        <h1 class="text-4xl font-extrabold tracking-tight">GALAXY COMPUTER LEARNING CENTER</h1>
     </nav>
+
+    <nav class="bg-blue-800 text-white p-3 text-center space-x-8 font-bold text-lg shadow-md">
+        <a href="#home" class="hover:text-blue-200">Home</a>
+        <a href="#courses" class="hover:text-blue-200">Courses</a>
+        <a href="#verify" class="hover:text-blue-200">Verify</a>
+        <a href="#contact" class="hover:text-blue-200">Contact Us</a>
+    </nav>
+
+    <section id="courses" class="py-12 px-6">
+        <h2 class="text-4xl font-bold text-center mb-10">Our Courses</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div class="bg-white p-8 rounded-xl shadow-lg border-b-4 border-blue-600 text-center">
+                <h3 class="font-bold text-2xl">Web Development</h3>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-lg border-b-4 border-blue-600 text-center">
+                <h3 class="font-bold text-2xl">Graphic Design</h3>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-lg border-b-4 border-blue-600 text-center">
+                <h3 class="font-bold text-2xl">Tally Prime</h3>
+            </div>
+        </div>
+    </section>
 
     <section id="verify" class="py-12 bg-white px-6">
         <div class="max-w-md mx-auto bg-gray-100 p-8 rounded-xl shadow-lg text-center">
             <h2 class="text-2xl font-bold mb-4">Verify Certificate</h2>
-            <input type="text" id="certNumber" placeholder="Enter Certificate ID" class="w-full p-3 border rounded mb-4">
-            <button id="searchBtn" class="w-full bg-blue-600 text-white py-3 rounded font-bold hover:bg-blue-700">Search</button>
-            
+            <input type="text" id="certNumber" placeholder="Enter ID" class="w-full p-4 border rounded-lg mb-4 text-lg">
+            <button id="searchBtn" class="w-full bg-blue-700 text-white py-3 rounded-lg font-bold text-lg hover:bg-blue-800">Search</button>
             <div id="downloadArea" class="hidden mt-4">
-                <button id="downloadBtn" class="w-full bg-green-600 text-white py-3 rounded font-bold">Download Certificate</button>
+                <button id="downloadBtn" class="w-full bg-green-600 text-white py-3 rounded-lg font-bold text-lg hover:bg-green-700">Download Certificate</button>
             </div>
         </div>
 
         <div id="certWrapper" class="hidden mt-10 flex justify-center">
-            <div id="certificate" class="w-[800px] bg-white p-12 border-[20px] border-blue-900 shadow-2xl relative">
+            <div id="certificate" class="w-[850px] bg-white p-16 border-[25px] border-blue-900 shadow-2xl relative">
                 <div class="text-center">
-                    <img src="logo.png" class="w-24 h-24 mx-auto mb-4" alt="Logo">
-                    <h1 class="text-4xl font-bold text-blue-900">CERTIFICATE OF COMPLETION</h1>
-                    <p class="text-gray-600 mt-2">This is to certify that</p>
-                    <h2 id="pdfName" class="text-3xl font-bold my-4 uppercase text-blue-800">Student Name</h2>
-                    <p>has successfully completed the course</p>
-                    <h3 id="pdfCourse" class="text-2xl font-bold my-4">Course Name</h3>
+                    <img src="logo.png" class="w-40 h-40 mx-auto mb-6" alt="Logo">
+                    <h1 class="text-5xl font-extrabold text-blue-900 mb-2 underline tracking-wider">GALAXY COMPUTER LEARNING CENTER</h1>
+                    <p class="text-xl mt-6">This is to certify that</p>
+                    <h2 class="text-4xl font-bold my-6 uppercase text-blue-800" id="pdfName">Student Name</h2>
+                    <p class="text-xl">has successfully completed the course</p>
+                    <h3 class="text-3xl font-bold my-6" id="pdfCourse">Course Name</h3>
                     
-                    <div class="text-left mt-6 text-sm">
-                        <p><strong>Certificate ID:</strong> <span id="pdfID"></span></p>
-                        <p><strong>Date of Issue:</strong> <span id="pdfDate"></span></p>
+                    <div class="text-left mt-10 font-bold text-lg border-t-2 border-gray-300 pt-4">
+                        <p>Certificate ID: <span id="pdfID"></span></p>
+                        <p>Date of Issue: <span id="pdfDate"></span></p>
                     </div>
 
-                    <div class="flex justify-between items-end mt-12">
-                        <div id="qrcode" class="w-24 h-24"></div>
+                    <div class="flex justify-between items-end mt-16">
+                        <div id="qrcode" class="w-28 h-28"></div>
                         <div class="text-center">
-                            <img src="signature.png" class="w-32 mx-auto mb-2" alt="Signature">
-                            <p class="font-bold border-t-2 border-black">Director Signature</p>
+                            <img src="sign.png" class="w-40 mx-auto mb-2" alt="Signature">
+                            <p class="font-bold text-lg border-t-2 border-black pt-2">Director Signature</p>
                         </div>
                     </div>
                 </div>
@@ -53,37 +74,38 @@
         </div>
     </section>
 
+    <section id="contact" class="py-12 px-6">
+        <h2 class="text-4xl font-bold text-center mb-8">Contact Us</h2>
+        <form class="max-w-lg mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+            <input type="text" placeholder="Name" class="w-full p-3 border rounded mb-4">
+            <input type="email" placeholder="Email" class="w-full p-3 border rounded mb-4">
+            <textarea placeholder="Message" class="w-full p-3 border rounded mb-4 h-32"></textarea>
+            <button class="w-full bg-blue-900 text-white py-3 rounded-lg font-bold text-lg hover:bg-blue-800">Send Message</button>
+        </form>
+    </section>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
         import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyD74cf-EyzOowdrKncNYAN29wnTVrGu5Vo",
-            projectId: "rabia-technical-institute"
-        };
+        const firebaseConfig = { apiKey: "AIzaSyD74cf-EyzOowdrKncNYAN29wnTVrGu5Vo", projectId: "rabia-technical-institute" };
         const db = getFirestore(initializeApp(firebaseConfig));
 
         document.getElementById('searchBtn').onclick = async () => {
             const id = document.getElementById('certNumber').value.trim().toUpperCase();
-            if(!id) return alert("Please enter an ID");
-            
+            if(!id) return alert("Please enter ID");
             const snap = await getDoc(doc(db, "certificates", id));
-            
             if (snap.exists()) {
                 const data = snap.data();
                 document.getElementById('pdfName').innerText = data.name;
                 document.getElementById('pdfCourse').innerText = data.course;
                 document.getElementById('pdfID').innerText = id;
                 document.getElementById('pdfDate').innerText = data.date || "29 May 2026";
-                
                 document.getElementById('certWrapper').classList.remove('hidden');
                 document.getElementById('downloadArea').classList.remove('hidden');
-                
                 document.getElementById("qrcode").innerHTML = "";
                 new QRCode(document.getElementById("qrcode"), "https://galaxylearningcomp.github.io/home/");
-            } else {
-                alert("Certificate not found!");
-            }
+            } else { alert("Certificate not found!"); }
         };
 
         document.getElementById('downloadBtn').onclick = () => {
