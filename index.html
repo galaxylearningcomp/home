@@ -50,13 +50,10 @@
 
         <div id="certWrapper" class="hidden mt-10 flex justify-center">
             <div id="certificate" class="w-[1122px] h-[794px] bg-white border-[20px] border-double border-blue-900 shadow-2xl relative overflow-hidden">
-                
                 <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none z-0">
                     <span class="text-[150px] font-black text-blue-900 rotate-[-30deg]">GCLC</span>
                 </div>
-                
                 <div class="relative z-10 w-full h-full flex flex-col items-center justify-between py-10 px-12">
-                    
                     <div class="text-center w-full">
                         <img src="logo.png" class="w-28 h-28 mx-auto" alt="Logo">
                         <h1 class="text-5xl font-extrabold text-blue-900 mt-2 tracking-wide">GALAXY COMPUTER LEARNING CENTER</h1>
@@ -65,7 +62,6 @@
                         <p class="text-2xl mt-6">has successfully completed the course</p>
                         <h3 class="text-4xl font-bold text-blue-800 mt-4 uppercase" id="pdfCourse">Course Name</h3>
                     </div>
-
                     <div class="w-full flex justify-between items-end mt-auto pt-6 border-t border-gray-300">
                         <div class="flex flex-col items-center">
                             <div id="qrcode" class="w-24 h-24"></div>
@@ -85,10 +81,19 @@
         </div>
     </section>
 
+    <section id="contact" class="py-12 px-6 bg-gray-100">
+        <h2 class="text-4xl font-bold text-center mb-8">Contact Us</h2>
+        <form class="max-w-lg mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+            <input type="text" placeholder="Name" class="w-full p-3 border rounded mb-4">
+            <input type="email" placeholder="Email" class="w-full p-3 border rounded mb-4">
+            <textarea placeholder="Message" class="w-full p-3 border rounded mb-4 h-32"></textarea>
+            <button class="w-full bg-blue-900 text-white py-3 rounded-lg font-bold text-lg hover:bg-blue-800">Send Message</button>
+        </form>
+    </section>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
         import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
-
         const firebaseConfig = { apiKey: "AIzaSyD74cf-EyzOowdrKncNYAN29wnTVrGu5Vo", projectId: "rabia-technical-institute" };
         const db = getFirestore(initializeApp(firebaseConfig));
 
@@ -110,7 +115,6 @@
         };
 
         document.getElementById('downloadBtn').onclick = () => {
-            // scale 2 ensures high quality
             html2canvas(document.getElementById('certificate'), { scale: 2, useCORS: true }).then(canvas => {
                 const link = document.createElement('a');
                 link.download = 'Certificate.png';
